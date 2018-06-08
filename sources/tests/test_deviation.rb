@@ -3,7 +3,7 @@ require "test/unit"
 
 class Test_Deviation  
     def setup
-        @deviation = 0
+        @deviation = 0 
         o = Functions.new()
         o.set_deviation()
         @deviation = o.get_deviation()
