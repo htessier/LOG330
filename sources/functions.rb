@@ -1,15 +1,28 @@
+require 'csv'
+
 class Functions  
-    def initialize( datasample)  
+    def initialize  
       # Instance variables  
-      @datas = datasample  
-      @data_count = datasample.count 
+      @datas = []   
       @average = 0
       @square_distance = []
       @sum_distance = 0
       @variance = 0
       @deviation = 0
+
+      # Loading the data from csv
+      file = "../data/data.csv"
+
+      x = 0
+      CSV.foreach( file ) do |row|
+          if( x > 0 )
+              @datas[x] = Integer( row[0] )
+          end
+          x += 1
+      end
+
+      @data_count = @datas.count
     end  
-    
     
     def set_average  
       if @datas
