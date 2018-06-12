@@ -2,5 +2,4 @@ language: ruby
 rvm:
   - 2.5.1
   - jruby
-script :
-sources/tests/test_*
+script : sources/tests/test_*
