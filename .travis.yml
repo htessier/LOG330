@@ -1,5 +1,8 @@
 language: ruby
 rvm:
   - 2.4.4
-script : ruby test_*.rb
+script : 
+  - ruby test_average.rb
+  - ruby test_deviation.rb
+  - ruby test_variance.rb
 sudo : false
