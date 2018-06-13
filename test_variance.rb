@@ -1,7 +1,7 @@
 require_relative 'functions'
 require "test/unit"
 
-class Test_Variance  
+class Test_Variance < Test::Unit::TestCase    
     def setup
         @variance = 0
         o = Functions.new()
