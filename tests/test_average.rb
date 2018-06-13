@@ -1,4 +1,4 @@
-require_relative '../functions'
+require_relative 'sources/functions'
 require "test/unit"
 
 class Test_Average < Test::Unit::TestCase  
