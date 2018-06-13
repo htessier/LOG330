@@ -11,7 +11,7 @@ class Functions
       @deviation = 0
 
       # Loading the data from csv
-      file = "../data/data.csv"
+      file = "data/data.csv"
 
       x = 0
       CSV.foreach( file ) do |row|
