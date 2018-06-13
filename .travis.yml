@@ -1,5 +1,5 @@
 language: ruby
 rvm:
   - 2.4.4
-
+script : exec test_*
 sudo : false
