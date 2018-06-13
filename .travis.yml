@@ -1,5 +1,5 @@
 language: ruby
 rvm:
   - 2.4.4
-script : tests/test_
+script : tests/test_average.rb
 sudo : false
