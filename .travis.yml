@@ -1,4 +1,6 @@
 language: ruby
 rvm:
   - jruby
+  - 2.4.4
 script : sources/tests/test_average.rb
+sudo : false
