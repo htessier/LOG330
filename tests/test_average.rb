@@ -5,7 +5,7 @@ class Test_Average < Test::Unit::TestCase
 
     def setup
       @average = 0
-      o = Functions.new()
+      o = Functions.new( true )
       o.set_average()
       @average = o.get_average()
     end

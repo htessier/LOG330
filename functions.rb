@@ -1,7 +1,7 @@
 require 'csv'
 
 class Functions  
-    def initialize  
+    def initialize( testing = false )  
       # Instance variables  
       @datas = []   
       @average = 0
@@ -11,7 +11,11 @@ class Functions
       @deviation = 0
 
       # Loading the data from csv
-      file = "data/data.csv"
+      if( testing )
+        file = "data/data.csv"
+      else 
+        file = "tests/data_test.csv"
+      end
 
       x = 0
       CSV.foreach( file ) do |row|

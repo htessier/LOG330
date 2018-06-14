@@ -4,7 +4,7 @@ require "test/unit"
 class Test_Variance < Test::Unit::TestCase    
     def setup
         @variance = 0
-        o = Functions.new()
+        o = Functions.new( true )
         o.set_variance()
         @variance = o.get_variance()
       end

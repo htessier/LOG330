@@ -4,7 +4,7 @@ require "test/unit"
 class Test_Deviation < Test::Unit::TestCase  
     def setup
         @deviation = 0 
-        o = Functions.new()
+        o = Functions.new( true )
         o.set_deviation()
         @deviation = o.get_deviation()
       end
