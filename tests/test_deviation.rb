@@ -1,4 +1,4 @@
-require_relative 'functions'
+require_relative '../functions'
 require "test/unit"
 
 class Test_Deviation < Test::Unit::TestCase  
