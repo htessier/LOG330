@@ -3,7 +3,7 @@
 require 'csv'
 require_relative 'functions'
 
-CSV_NAME = "data/data.csv"
+CSV_NAME = "data/data_tp1.csv"
 data_sample = []
 
 # Retrieve data from csv

@@ -12,9 +12,9 @@ class Functions
 
       # Loading the data from csv
       if( testing )
-        file = "data/data.csv"
+        file = "data/data_tp1.csv"
       else 
-        file = "tests/data_test.csv"
+        file = "tests/data_tp1_test.csv"
       end
 
       x = 0
