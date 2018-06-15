@@ -117,5 +117,16 @@ class Functions
     def set_correlation 
       @correlation = @numerator / @denominator
     end 
-    
+
+    def set_correlation_square
+      @correlation_square = @correlation * @correlation
+    end
+
+    def get_correlation
+      return @correlation
+    end 
+
+    def get_correlation_square
+      return @correlation_square
+    end
 end  

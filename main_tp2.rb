@@ -26,3 +26,14 @@ o.set_sum_square_y()
 o.set_denominator()
 
 o.set_correlation()
+
+o.set_correlation_square()
+
+puts ""
+puts ""
+puts "TP2 : Calculer la correlation"
+puts "------------------------------"
+puts "Correlation : #{ o.get_correlation() }"
+puts "Correlation au carre : #{ o.get_correlation_square() }"
+puts ""
+puts ""
