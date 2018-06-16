@@ -115,11 +115,11 @@ class Functions
     end
 
     def set_correlation 
-      @correlation = @numerator / @denominator
+      @correlation = (@numerator / @denominator).round(8)
     end 
 
     def set_correlation_square
-      @correlation_square = @correlation * @correlation
+      @correlation_square = (@correlation * @correlation).round(8)
     end
 
     def get_correlation
