@@ -1,7 +1,7 @@
-require_relative '../../functions'
+require_relative '../functions'
 require "test/unit"
 
-class Test_Average < Test::Unit::TestCase  
+class Test_Correlation < Test::Unit::TestCase  
 
     def setup
       @average = 0
