@@ -2,7 +2,6 @@ language: ruby
 rvm:
   - 2.4.4
 script : 
-  - ruby tests/test_average.rb
-  - ruby tests/test_deviation.rb
-  - ruby tests/test_variance.rb
+  - ruby TP02/tests/test_correlation.rb
+  - ruby TP02/tests/test_correlation_square.rb
 sudo : false
