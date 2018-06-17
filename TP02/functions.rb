@@ -1,7 +1,7 @@
 require 'csv'
 
 class Functions  
-    def initialize( csv_name )  
+    def initialize( testing = false )  
       # Instance variables  
       @datas = []   
       @sum_X_x_Y = 0
@@ -17,6 +17,13 @@ class Functions
 
       @correlation = 0
 
+      # Loading the data from csv
+      if( testing )
+        csv_name = File.join(File.dirname(__FILE__), 'tests/data_test.csv')
+      else 
+        csv_name = File.join(File.dirname(__FILE__), 'data/data.csv')
+      end
+
       x = 0
       CSV.foreach( csv_name ) do |row|
           if( x > 0 )
@@ -26,7 +33,7 @@ class Functions
              else
               fullstring = row[0]
              end 
-   
+
              @datas[x-1] = fullstring.split(";").map(&:to_f)
           end
           x += 1
@@ -39,7 +46,9 @@ class Functions
       sum = 0
 
       @datas.each do |data|
-        sum += data[0] * data[1]
+        if(! data[0].nil? &&  ! data[1].nil?)
+          sum += data[0] * data[1]
+        end
       end  
 
       @sum_X_x_Y = sum
@@ -50,7 +59,9 @@ class Functions
       sum = 0
 
       @datas.each do |data|
-        sum += data[0] 
+        if(! data[0].nil?)
+          sum += data[0] 
+        end
       end  
       
       @sum_X = sum
@@ -60,7 +71,9 @@ class Functions
       sum = 0
 
       @datas.each do |data|
-        sum += data[1] 
+        if(! data[1].nil?)
+          sum += data[1] 
+        end
       end  
 
       @sum_Y = sum
@@ -74,7 +87,9 @@ class Functions
       sum = 0
 
       @datas.each do |data|
-        sum += data[0] * data[0]
+        if(! data[0].nil?)
+          sum += data[0] * data[0]
+        end
       end  
 
       @sum_X_square = sum
@@ -84,7 +99,9 @@ class Functions
       sum = 0
 
       @datas.each do |data|
-        sum += data[0]
+        if(! data[0].nil?)
+          sum += data[0]
+        end
       end  
 
       @sum_square_X = sum * sum 
@@ -94,7 +111,9 @@ class Functions
       sum = 0
 
       @datas.each do |data|
-        sum += data[1] * data[1]
+        if(! data[1].nil?)
+          sum += data[1] * data[1]
+        end
       end  
 
       @sum_Y_square = sum
@@ -104,7 +123,9 @@ class Functions
       sum = 0
 
       @datas.each do |data|
-        sum += data[1]
+        if(! data[1].nil?)
+          sum += data[1]
+        end
       end  
 
       @sum_square_Y = sum * sum

@@ -12,9 +12,9 @@ class Functions
 
       # Loading the data from csv
       if( testing )
-        file = "data/data_tp1.csv"
+        file = File.join(File.dirname(__FILE__), 'data/data.csv')
       else 
-        file = "tests/data_tp1_test.csv"
+        file = File.join(File.dirname(__FILE__), 'tests/data_test.csv')
       end
 
       x = 0
@@ -38,7 +38,7 @@ class Functions
           end
         end  
        
-        @average = ( sum.to_f / @data_count ).round(3) ;
+        @average = ( sum.to_f / @data_count ).round(3) 
       end  
     end  
 
@@ -48,9 +48,11 @@ class Functions
 
       if @average 
         @datas.each do |data|
-          distance = (data - @average).round(5)
-          @square_distance[x] = ( distance * distance )
-          x += 1
+          if ! data.nil?
+            distance = (data - @average).round(5)
+            @square_distance[x] = ( distance * distance )
+            x += 1
+          end
         end  
       end
 

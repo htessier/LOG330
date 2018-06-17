@@ -1,19 +1,8 @@
 # Main file executing the function to solve the variance
 # Include csv library to read file
-require 'csv'
 require_relative 'functions'
 
-CSV_NAME = "data/data_tp1.csv"
-data_sample = []
-
-# Retrieve data from csv
-x = 0
-CSV.foreach( CSV_NAME ) do |row|
-    data_sample[x] = Integer( row[0] )
-    x += 1
-end
-
-o = Functions.new( data_sample )
+o = Functions.new()
 
 # STEP 1 : Set the average of the data sample
 o.set_average()
