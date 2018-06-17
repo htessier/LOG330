@@ -16,6 +16,7 @@ class Functions
       @denominator = 0
 
       @correlation = 0
+      @correlation_square = 0
 
       # Loading the data from csv
       if( testing )
