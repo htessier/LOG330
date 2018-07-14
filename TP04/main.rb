@@ -2,38 +2,21 @@
 # Include csv library to read file
 require_relative 'functions'
 
-testing = false
+datafile = "data/data.csv"
 
-o = Functions.new( testing )
+o = Functions.new()
 
-o.set_sum_X_x_Y()
+nombreCours = o.readFile( datafile )
+puts "Nombre de cours : #{ nombreCours } "
+courseNumber = 1
 
-o.set_sum_X()
+while courseNumber <= nombreCours do
 
-o.set_sum_Y()
+    puts "Correlation du Cours #{ courseNumber } par rapport a l'intra"
+    puts "--------------------------------------------------"
+        o.getCorrelationByCourse( courseNumber )
+    puts ""
+    puts ""
 
-o.set_numerator()
-
-o.set_sum_x_square()
-
-o.set_sum_square_x()
-
-o.set_sum_y_square()
-
-o.set_sum_square_y()
-
-o.set_denominator()
-
-o.set_correlation()
-
-o.set_correlation_square()
-
-puts ""
-puts ""
-puts "TP2 : Calculer la correlation"
-puts "------------------------------"
-puts "Correlation : #{ o.get_correlation() }"
-puts "Correlation au carre : #{ o.get_correlation_square() }"
-puts "Interpretation : #{ o.get_interpretation() }"
-puts ""
-puts ""
+    courseNumber += 1
+end    
