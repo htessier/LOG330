@@ -1,8 +1,9 @@
 require 'csv'
 
 class Functions  
-    def initialize()  
+    def initialize( display )  
       @datas = []
+      @display = display
     end  
 
     def readFile( filename )
@@ -31,9 +32,9 @@ class Functions
 
             else
 
-              #if( nombreCol == 0 ) 
-              #  nombreCol = col.count - 2
-              #end 
+              if( nombreCol == 0 ) 
+                nombreCol = row.count - 2
+              end 
 
               data[ y ] = (col.gsub ",", ".").to_f              
             end 
@@ -48,10 +49,11 @@ class Functions
         x += 1
       }
 
-      return 6
+      return nombreCol
     end 
 
     def getCorrelationByCourse( courseNumber )
+
       nbStudent = 0
       indexCourse = 0
       dataCourseX = []
@@ -66,52 +68,57 @@ class Functions
       }
 
       sum_xy = set_sum_X_x_Y( dataCourseX, dataCourseY )
-      puts "Set Sum X x Y : #{ sum_xy }"
-      puts "" 
 
       sum_x = set_sum( dataCourseX )
-      puts "Set Sum X : #{ sum_x }"
-      puts "" 
 
       sum_y = set_sum( dataCourseY )
-      puts "Set Sum Y : #{ sum_y }"
-      puts "" 
 
       numerator = set_numerator( nbStudent, sum_xy, sum_x, sum_y )
-      puts "Numerator : #{ numerator }"
-      puts "" 
 
       sum_x_square = set_sum_z_square( dataCourseX )
-      puts "Sum X Square : #{ sum_x_square }"
-      puts "" 
 
       sum_square_x = set_sum_square_z( dataCourseX )
-      puts "Sum Square X: #{ sum_square_x }"
-      puts "" 
 
       sum_y_square = set_sum_z_square( dataCourseY )
-      puts "Sum Y Square : #{ sum_y_square }"
-      puts "" 
 
       sum_square_y = set_sum_square_z( dataCourseY )
-      puts "Sum Square Y: #{ sum_square_y }"
-      puts "" 
-
+      
       denominator = set_denominator( nbStudent, sum_x_square, sum_square_x, sum_y_square, sum_square_y )
-      puts "Denominator : #{ denominator }"
-      puts ""
-
+      
       correlation = set_correlation( numerator, denominator )
-      puts "Correlation : #{ correlation }"
-      puts ""
-
+     
       correlation_square = set_correlation_square( correlation )
-      puts "Correlation Square : #{ correlation_square }"
-      puts ""
 
       interpretation = get_interpretation( correlation )
-      puts "Interpretation : #{ interpretation }"
-      puts ""
+
+      if( @display )
+        puts "Set Sum X x Y : #{ sum_xy }"
+        puts "" 
+        puts "Set Sum X : #{ sum_x }"
+        puts "" 
+        puts "Set Sum Y : #{ sum_y }"
+        puts "" 
+        puts "Numerator : #{ numerator }"
+        puts "" 
+        puts "Sum X Square : #{ sum_x_square }"
+        puts ""
+        puts "Sum Square X: #{ sum_square_x }"
+        puts ""
+        puts "Sum Y Square : #{ sum_y_square }"
+        puts "" 
+        puts "Sum Square Y: #{ sum_square_y }"
+        puts "" 
+        puts "Denominator : #{ denominator }"
+        puts ""
+        puts "Correlation : #{ correlation }"
+        puts ""
+        puts "Correlation Square : #{ correlation_square }"
+        puts ""
+        puts "Interpretation : #{ interpretation }"
+        puts ""
+      end 
+
+      return correlation
     end if
 
     def set_sum_X_x_Y( datasX, datasY )

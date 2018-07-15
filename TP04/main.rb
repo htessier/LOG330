@@ -4,17 +4,23 @@ require_relative 'functions'
 
 datafile = "data/data.csv"
 
-o = Functions.new()
+o = Functions.new( true )
 
 nombreCours = o.readFile( datafile )
+
+puts ""
 puts "Nombre de cours : #{ nombreCours } "
+puts ""
+
 courseNumber = 1
 
 while courseNumber <= nombreCours do
 
+    correlation = 0
+
     puts "Correlation du Cours #{ courseNumber } par rapport a l'intra"
     puts "--------------------------------------------------"
-        o.getCorrelationByCourse( courseNumber )
+        correlation = o.getCorrelationByCourse( courseNumber )
     puts ""
     puts ""
 

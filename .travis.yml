@@ -2,6 +2,5 @@ language: ruby
 rvm:
   - 2.4.4
 script : 
-  - ruby TP02/tests/test_correlation.rb
-  - ruby TP02/tests/test_correlation_square.rb
+  - ruby TP04/tests/test_correlation_by_course.rb
 sudo : false
