@@ -67,29 +67,29 @@ class Functions
         nbStudent += 1
       }
 
-      sum_xy = set_sum_X_x_Y( dataCourseX, dataCourseY )
+      sum_xy = setSumXxY( dataCourseX, dataCourseY )
 
-      sum_x = set_sum( dataCourseX )
+      sum_x = setSum( dataCourseX )
 
-      sum_y = set_sum( dataCourseY )
+      sum_y = setSum( dataCourseY )
 
-      numerator = set_numerator( nbStudent, sum_xy, sum_x, sum_y )
+      numerator = setNumerator( nbStudent, sum_xy, sum_x, sum_y )
 
-      sum_x_square = set_sum_z_square( dataCourseX )
+      sum_x_square = setSumZSquare( dataCourseX )
 
-      sum_square_x = set_sum_square_z( dataCourseX )
+      sum_square_x = setSumSquareZ( dataCourseX )
 
-      sum_y_square = set_sum_z_square( dataCourseY )
+      sum_y_square = setSumZSquare( dataCourseY )
 
-      sum_square_y = set_sum_square_z( dataCourseY )
+      sum_square_y = setSumSquareZ( dataCourseY )
       
-      denominator = set_denominator( nbStudent, sum_x_square, sum_square_x, sum_y_square, sum_square_y )
+      denominator = setDenominator( nbStudent, sum_x_square, sum_square_x, sum_y_square, sum_square_y )
       
-      correlation = set_correlation( numerator, denominator )
+      correlation = setCorrelation( numerator, denominator )
      
-      correlation_square = set_correlation_square( correlation )
+      correlation_square = setCorrelationSquare( correlation )
 
-      interpretation = get_interpretation( correlation )
+      interpretation = getInterpretation( correlation )
 
       if( @display )
         puts "Set Sum X x Y : #{ sum_xy }"
@@ -121,7 +121,7 @@ class Functions
       return correlation
     end if
 
-    def set_sum_X_x_Y( datasX, datasY )
+    def setSumXxY( datasX, datasY )
       sum = 0
       index = 0
 
@@ -134,7 +134,7 @@ class Functions
       return sum
     end
 
-    def set_sum( datas )
+    def setSum( datas )
       sum = 0
 
       datas.each do |data|
@@ -146,11 +146,11 @@ class Functions
       return sum
     end  
 
-    def set_numerator( dataCount, sum_xy, sum_x, sum_y)
+    def setNumerator( dataCount, sum_xy, sum_x, sum_y)
       return  (dataCount * sum_xy) - ( sum_x * sum_y )
     end   
 
-    def set_sum_z_square( datas)
+    def setSumZSquare( datas)
       sum = 0
 
       datas.each do |data|
@@ -162,7 +162,7 @@ class Functions
       return sum
     end 
 
-    def set_sum_square_z( datas )
+    def setSumSquareZ( datas )
       sum = 0
 
       datas.each do |data|
@@ -174,11 +174,11 @@ class Functions
      return (sum * sum)
     end 
 
-    def set_denominator( nbStudent, sum_x_square, sum_square_x, sum_y_square, sum_square_y)
+    def setDenominator( nbStudent, sum_x_square, sum_square_x, sum_y_square, sum_square_y)
       return Math.sqrt( ( ( nbStudent *  sum_x_square ) - sum_square_x ) * ( ( nbStudent * sum_y_square ) - sum_square_y ) )
     end
 
-    def set_correlation( numerator, denominator ) 
+    def setCorrelation( numerator, denominator ) 
       correlaiton = 0
       correlation = (numerator / denominator)
 
@@ -189,11 +189,11 @@ class Functions
       return (correlation).round(8)
     end 
 
-    def set_correlation_square( correlation )
+    def setCorrelationSquare( correlation )
       return (correlation * correlation).round(8)
     end
 
-    def get_interpretation( correlation )
+    def getInterpretation( correlation )
       output = ""
 
       case 
