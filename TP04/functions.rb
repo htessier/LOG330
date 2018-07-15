@@ -63,7 +63,7 @@ class Functions
         name = student[0]
 
         dataCourseX[ nbStudent ] = student[ courseNumber ]
-        dataCourseY[ nbStudent ] = student[ 7 ]
+        dataCourseY[ nbStudent ] = student[ -1 ]
         nbStudent += 1
       }
 
@@ -179,7 +179,14 @@ class Functions
     end
 
     def set_correlation( numerator, denominator ) 
-      return (numerator / denominator).round(8)
+      correlaiton = 0
+      correlation = (numerator / denominator)
+
+      if( correlation < 0 )
+        correlation = correlation * (-1)
+      end 
+
+      return (correlation).round(8)
     end 
 
     def set_correlation_square( correlation )

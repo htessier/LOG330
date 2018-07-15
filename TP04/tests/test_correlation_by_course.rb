@@ -4,7 +4,7 @@ require "test/unit"
 class Test_Correlation < Test::Unit::TestCase  
 
     def setup
-      @file = "data_tests.csv"  
+      @file = "tests/data_tests.csv"  
       @correlation = 0
       @correlation = get_correlation()
     end
@@ -34,7 +34,7 @@ class Test_Correlation < Test::Unit::TestCase
       
       nbCourse = o.readFile( @file )
       
-      correlation = o.get_correlation_by_course( nbCourse )
+      correlation = o.getCorrelationByCourse( nbCourse )
      
       return correlation
     end 
