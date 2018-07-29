@@ -1,39 +1,40 @@
 # Main file executing the function to solve the variance
 # Include csv library to read file
 require_relative 'functions'
+require_relative 'reader'
 
 testing = false
+filename = "data/data.csv"
 
-o = Functions.new( testing )
 
-o.set_sum_X_x_Y()
+rd = DataReaderFunctions.new()
+cf = CalculusFunctions.new( testing )
 
-o.set_sum_X()
 
-o.set_sum_Y()
+rd.readFile( filename )
+dataY = rd.extractY()
+dataX = rd.extractX()
 
-o.set_numerator()
+yreg = cf.calculerRegression()
+ecart = cf.calculerEcartType( dataY, yreg )
+moyenX = cf.calculerXmoyen( dataX )
 
-o.set_sum_x_square()
+# intervalle a 70 %
+law = cf.getStudentLawByLevel( 70 )
+intervalle70 = cf.calculerIntervalle( law, ecart, moyenX, dataX )
+loc70 = cf.calculerBorne( yreg, intervalle70 )
 
-o.set_sum_square_x()
-
-o.set_sum_y_square()
-
-o.set_sum_square_y()
-
-o.set_denominator()
-
-o.set_correlation()
-
-o.set_correlation_square()
+# intervalle a 90 %
+law = cf.getStudentLawByLevel( 90 )
+intervalle90 = cf.calculerIntervalle( law, ecart, moyenX, dataX )
+loc90 = cf.calculerBorne( yreg, intervalle90 )
 
 puts ""
-puts ""
-puts "TP2 : Calculer la correlation"
+puts "TP05 : Calculer l'intervalle"
 puts "------------------------------"
-puts "Correlation : #{ o.get_correlation() }"
-puts "Correlation au carre : #{ o.get_correlation_square() }"
-puts "Interpretation : #{ o.get_interpretation() }"
+puts "Intervalle 70 %, la taille du projet varie de : #{ loc70 }"
+puts ""
+puts "Intervalle 90 %, la taille du projet varie de : #{ loc90 }"
+
 puts ""
 puts ""

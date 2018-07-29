@@ -1,175 +1,78 @@
-require 'csv'
-
-class Functions  
+class CalculusFunctions  
     def initialize( testing = false )  
-      # Instance variables  
-      @datas = []   
-      @sum_X_x_Y = 0
-      @sum_X = 0
-      @sum_Y = 0
-      @numerator = 0
 
-      @sum_X_square = 0
-      @sum_square_X = 0
-      @sum_Y_square = 0
-      @sum_square_Y = 0
-      @denominator = 0
-
-      @correlation = 0
-      @correlation_square = 0
-
-      # Loading the data from csv
-      if( testing )
-        csv_name = File.join(File.dirname(__FILE__), 'tests/data_test.csv')
-      else 
-        csv_name = File.join(File.dirname(__FILE__), 'data/data.csv')
-      end
-
-      x = 0
-      CSV.foreach( csv_name ) do |row|
-          if( x > 0 )
-
-             if(! row[1].nil? )
-              fullstring = row[0].concat(".").concat( row[1] )
-             else
-              fullstring = row[0]
-             end 
-
-             @datas[x-1] = fullstring.split(";").map(&:to_f)
-          end
-          x += 1
-      end
-
-      @data_count = @datas.count
     end  
 
-    def set_sum_X_x_Y
-      sum = 0
+    def calculerRegression()
+      return 1911
+    end 
 
-      @datas.each do |data|
-        if(! data[0].nil? &&  ! data[1].nil?)
-          sum += data[0] * data[1]
-        end
+    def calculerEcartType( dataY, regressionY )
+      sum = 0
+      count = dataY.count()
+      den = count - 1
+      mult = 1/den.to_f 
+
+      dataY.each do |data|
+          sum += ( data - regressionY ) * ( data - regressionY )    
       end  
 
-      @sum_X_x_Y = sum
-      
+      ecartType = Math.sqrt( mult * sum ) 
+
+      return ecartType
     end
 
-    def set_sum_X
+    def calculerXmoyen( dataX )
+
       sum = 0
+      count = dataX.count()
 
-      @datas.each do |data|
-        if(! data[0].nil?)
-          sum += data[0] 
-        end
-      end  
-      
-      @sum_X = sum
-    end  
+      dataX.each do |data|
+        sum += data 
+      end 
 
-    def set_sum_Y
-      sum = 0
-
-      @datas.each do |data|
-        if(! data[1].nil?)
-          sum += data[1] 
-        end
-      end  
-
-      @sum_Y = sum
-    end  
-
-    def set_numerator
-      @numerator =  @data_count * @sum_X_x_Y - ( @sum_X * @sum_Y )
-    end   
-
-    def set_sum_x_square
-      sum = 0
-
-      @datas.each do |data|
-        if(! data[0].nil?)
-          sum += data[0] * data[0]
-        end
-      end  
-
-      @sum_X_square = sum
+      return sum.to_f / count
     end 
 
-    def set_sum_square_x
+    def calculerIntervalle( law, ecart, moyenX, dataX )
       sum = 0
+      xk = 1000 
 
-      @datas.each do |data|
-        if(! data[0].nil?)
-          sum += data[0]
-        end
+      dataX.each do |data|
+        sum += ( data - moyenX ) * ( data - moyenX )    
       end  
 
-      @sum_square_X = sum * sum 
+      square_root = 1 + (1/dataX.count()) + ( ( 300 - moyenX ) * ( 300 - moyenX ) ) / sum 
+
+      intervalle = law * ecart * Math.sqrt( square_root )
+
+      return intervalle
     end 
 
-    def set_sum_y_square
-      sum = 0
+    def getStudentLawByLevel( level )
+      law = 0
 
-      @datas.each do |data|
-        if(! data[1].nil?)
-          sum += data[1] * data[1]
-        end
-      end  
+      if( level == 70 )
+        law = 1.108
+      elsif( level == 90 )
+        law = 1.860
+      end 
 
-      @sum_Y_square = sum
-    end 
-
-    def set_sum_square_y
-      sum = 0
-
-      @datas.each do |data|
-        if(! data[1].nil?)
-          sum += data[1]
-        end
-      end  
-
-      @sum_square_Y = sum * sum
-    end 
-
-    def set_denominator
-      @denominator = Math.sqrt( ( ( @data_count *  @sum_X_square ) - @sum_square_X ) * ( ( @data_count * @sum_Y_square ) - @sum_square_Y ) )
+      return law
     end
 
-    def set_correlation 
-      @correlation = (@numerator / @denominator).round(8)
-    end 
 
-    def set_correlation_square
-      @correlation_square = (@correlation * @correlation).round(8)
-    end
-
-    def get_correlation
-      return @correlation
-    end 
-
-    def get_correlation_square
-      return @correlation_square
-    end
-
-    def get_interpretation
+    def calculerBorne( yreg, intervalle )
       output = ""
 
-      case 
-      when @correlation >= 0 && @correlation < 0.2
-        output = "Nulle a Faible"
-      when @correlation >= 0.2 && @correlation < 0.4
-        output = "Faible a Moyenne"
-      when @correlation >= 0.4 && @correlation < 0.7
-        output = "Moyenne a Forte"
-      when @correlation >= 0.7 && @correlation < 0.9
-        output = "Forte a Tres forte"
-      when @correlation >= 0.9 && @correlation <= 1
-        output = "Tres forte a Parfaite"  
+      if( yreg - intervalle < 0 )
+        inf = 0
       else
-        output = "Erreur d'interpretation"  
-      end
+        inf = ( yreg - intervalle ).to_i
+      end if
 
-      return output
-    end 
+      sup = ( yreg + intervalle ).to_i
+
+      return " #{ inf } a #{ sup } LOC" 
+    end
 end  
