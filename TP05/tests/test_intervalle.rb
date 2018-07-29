@@ -31,8 +31,12 @@ class Test_Correlation < Test::Unit::TestCase
         assert_equal( false, @inf < 0, "Intervalle negative value failed")
     end
 
-    def testIntervalleNil
+    def testIntervalleInfBoundNil
         assert_equal( false, @inf.nil?, "Intervalle negative value failed")
+    end
+
+    def testIntervalleSupBoundNil
+        assert_equal( false, @sup.nil?, "Intervalle negative value failed")
     end
 
     def setIntervalle()
