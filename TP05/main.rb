@@ -15,19 +15,19 @@ rd.readFile( filename )
 dataY = rd.extractY()
 dataX = rd.extractX()
 
-yreg = cf.calculerRegression()
-ecart = cf.calculerEcartType( dataY, yreg )
-moyenX = cf.calculerXmoyen( dataX )
+regressionY = cf.calculerRegression()
+ecartType = cf.calculerEcartType( dataY, regressionY )
+xMoyen = cf.calculerXmoyen( dataX )
 
 # intervalle a 70 %
 law = cf.getStudentLawByLevel( 70 )
-intervalle70 = cf.calculerIntervalle( law, ecart, moyenX, dataX )
-loc70 = cf.calculerBorne( yreg, intervalle70 )
+intervalle70 = cf.calculerIntervalle( law, ecartType, xMoyen, dataX )
+loc70 = cf.calculerBorne( regressionY, intervalle70 )
 
 # intervalle a 90 %
 law = cf.getStudentLawByLevel( 90 )
-intervalle90 = cf.calculerIntervalle( law, ecart, moyenX, dataX )
-loc90 = cf.calculerBorne( yreg, intervalle90 )
+intervalle90 = cf.calculerIntervalle( law, ecartType, xMoyen, dataX )
+loc90 = cf.calculerBorne( regressionY, intervalle90 )
 
 puts ""
 puts "TP05 : Calculer l'intervalle"

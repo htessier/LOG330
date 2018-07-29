@@ -11,13 +11,13 @@ class CalculusFunctions
       sum = 0
       count = dataY.count()
       den = count - 1
-      mult = 1/den.to_f 
+      multiplier = 1/den.to_f 
 
       dataY.each do |data|
           sum += ( data - regressionY ) * ( data - regressionY )    
       end  
 
-      ecartType = Math.sqrt( mult * sum ) 
+      ecartType = Math.sqrt( multiplier * sum ) 
 
       return ecartType
     end
@@ -34,17 +34,17 @@ class CalculusFunctions
       return sum.to_f / count
     end 
 
-    def calculerIntervalle( law, ecart, moyenX, dataX )
+    def calculerIntervalle( law, ecartType, xMoyen, dataX )
       sum = 0
       xk = 1000 
 
       dataX.each do |data|
-        sum += ( data - moyenX ) * ( data - moyenX )    
+        sum += ( data - xMoyen ) * ( data - xMoyen )    
       end  
 
-      square_root = 1 + (1/dataX.count()) + ( ( 300 - moyenX ) * ( 300 - moyenX ) ) / sum 
+      square_root = 1 + (1/dataX.count()) + ( ( 300 - xMoyen ) * ( 300 - xMoyen ) ) / sum 
 
-      intervalle = law * ecart * Math.sqrt( square_root )
+      intervalle = law * ecartType * Math.sqrt( square_root )
 
       return intervalle
     end 
@@ -62,37 +62,36 @@ class CalculusFunctions
     end
 
 
-    def calculerBorne( yreg, intervalle )
-      output = ""
+    def calculerBorne( regressionY, intervalle )
 
-      if( yreg - intervalle < 0 )
-        inf = 0
+      if( regressionY - intervalle < 0 )
+        borneInf = 0
       else
-        inf = ( yreg - intervalle ).to_i
+        borneInf = ( regressionY - intervalle ).to_i
       end if
 
-      sup = ( yreg + intervalle ).to_i
+      borneSup = ( regressionY + intervalle ).to_i
 
-      return " #{ inf } a #{ sup } LOC" 
+      return " #{ borneInf } a #{ borneSup } LOC" 
     end
 
-    def calculerBorneInf( yreg, intervalle )
-      inf = 0
+    def calculerBorneInf( regressionY, intervalle )
+      borneInf = 0
 
-      if( yreg - intervalle < 0 )
-        inf = 0
+      if( regressionY - intervalle < 0 )
+        borneInf = 0
       else
-        inf = ( yreg - intervalle ).to_i
+        borneInf = ( regressionY - intervalle ).to_i
       end if
 
-      return inf
+      return borneInf
     end
 
-    def calculerBorneSup( yreg, intervalle )
-      sup = 0
+    def calculerBorneSup( regressionY, intervalle )
+      borneSup = 0
 
-      sup = ( yreg + intervalle ).to_i
+      borneSup = ( regressionY + intervalle ).to_i
 
-      return sup
+      return borneSup
     end
 end  

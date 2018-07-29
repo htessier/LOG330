@@ -43,15 +43,15 @@ class Test_Correlation < Test::Unit::TestCase
         dataY = rd.extractY()
         dataX = rd.extractX()
         
-        yreg = cf.calculerRegression()
-        ecart = cf.calculerEcartType( dataY, yreg )
-        moyenX = cf.calculerXmoyen( dataX )
+        regressionY = cf.calculerRegression()
+        ecartType = cf.calculerEcartType( dataY, regressionY )
+        xMoyen = cf.calculerXmoyen( dataX )
         
         # intervalle a 70 %
         law = cf.getStudentLawByLevel( 70 )
-        intervalle70 = cf.calculerIntervalle( law, ecart, moyenX, dataX )
-        @inf = cf.calculerBorneInf( yreg, intervalle70 )
-        @sup = cf.calculerBorneSup( yreg, intervalle70 )
+        intervalle70 = cf.calculerIntervalle( law, ecartType, xMoyen, dataX )
+        @inf = cf.calculerBorneInf( regressionY, intervalle70 )
+        @sup = cf.calculerBorneSup( regressionY, intervalle70 )
 
     end 
 end  
