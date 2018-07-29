@@ -75,4 +75,24 @@ class CalculusFunctions
 
       return " #{ inf } a #{ sup } LOC" 
     end
+
+    def calculerBorneInf( yreg, intervalle )
+      inf = 0
+
+      if( yreg - intervalle < 0 )
+        inf = 0
+      else
+        inf = ( yreg - intervalle ).to_i
+      end if
+
+      return inf
+    end
+
+    def calculerBorneSup( yreg, intervalle )
+      sup = 0
+
+      sup = ( yreg + intervalle ).to_i
+
+      return sup
+    end
 end  
