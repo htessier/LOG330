@@ -5,7 +5,7 @@ require "test/unit"
 class Test_Correlation < Test::Unit::TestCase  
 
     def setup
-      @file = "tests/data_tests.csv"  
+      @file = "tests/data_test.csv"
       @inf = 0
       @sup = 0
       setIntervalle()
@@ -16,7 +16,7 @@ class Test_Correlation < Test::Unit::TestCase
     end
     
     def testIntervalleUpperBound
-        assert_equal( true, @sup <= 1, "Intervalle upper bound failed.")
+        assert_equal( false, @sup < 0, "Intervalle upper bound failed.")
     end
 
     def testIntervalleInfInvalidBound
@@ -54,8 +54,11 @@ class Test_Correlation < Test::Unit::TestCase
         # intervalle a 70 %
         law = cf.getStudentLawByLevel( 70 )
         intervalle70 = cf.calculerIntervalle( law, ecartType, xMoyen, dataX )
-        @inf = cf.calculerBorneInf( regressionY, intervalle70 )
-        @sup = cf.calculerBorneSup( regressionY, intervalle70 )
 
+        inf = cf.calculerBorneInf( regressionY, intervalle70 )
+        @inf = inf.to_i
+        
+        sup = cf.calculerBorneSup( regressionY, intervalle70 )
+        @sup = sup.to_i 
     end 
 end  

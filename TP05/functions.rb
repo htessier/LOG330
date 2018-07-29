@@ -78,20 +78,18 @@ class CalculusFunctions
     def calculerBorneInf( regressionY, intervalle )
       borneInf = 0
 
-      if( regressionY - intervalle < 0 )
-        borneInf = 0
-      else
-        borneInf = ( regressionY - intervalle ).to_i
-      end if
+      if( (regressionY - intervalle) > 0 )
+        borneInf = regressionY - intervalle
+      end
 
-      return borneInf
+      return borneInf.to_i
     end
 
     def calculerBorneSup( regressionY, intervalle )
-      borneSup = 0
+      borneSup = -1
 
-      borneSup = ( regressionY + intervalle ).to_i
-
-      return borneSup
+      borneSup = regressionY.to_i + intervalle.to_i
+  
+      return borneSup.to_i
     end
 end  
